@@ -1,9 +1,8 @@
 package ru.ivk.log;
 
-import ru.ivk.function.AbstractFunction;
 import ru.ivk.function.BasicFunction;
 
-public class NaturalLogarithm extends AbstractFunction implements BasicFunction {
+public class NaturalLogarithm extends BasicFunction {
     @Override
     public double calculate(double x, double precision) {
         return 0;

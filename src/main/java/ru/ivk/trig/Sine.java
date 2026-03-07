@@ -1,9 +1,8 @@
 package ru.ivk.trig;
 
-import ru.ivk.function.AbstractFunction;
 import ru.ivk.function.BasicFunction;
 
-public class Sine extends AbstractFunction implements BasicFunction {
+public class Sine extends BasicFunction {
     @Override
     public double calculate(double x, double precision) {
         return 0;

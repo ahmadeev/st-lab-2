@@ -1,16 +1,19 @@
 package ru.ivk.log;
 
-import lombok.RequiredArgsConstructor;
 import ru.ivk.function.AbstractFunction;
 
 import java.math.BigDecimal;
 import java.math.MathContext;
 import java.math.RoundingMode;
 
-@RequiredArgsConstructor
 public class Logarithm extends AbstractFunction {
     private final NaturalLogarithm ln;
     private final int base;
+
+    public Logarithm(int base) {
+        this.ln = new NaturalLogarithm();
+        this.base = base;
+    }
 
     @Override
     public BigDecimal calculate(BigDecimal x, BigDecimal precision) {

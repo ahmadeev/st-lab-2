@@ -1,5 +1,6 @@
 package ru.ivk.trig;
 
+import ru.ivk.MathConstants;
 import ru.ivk.function.SeriesFunction;
 
 import java.math.BigDecimal;
@@ -12,12 +13,15 @@ public class Sine extends SeriesFunction {
     public BigDecimal computeSeries(final BigDecimal x, final BigDecimal precision) {
         final MathContext mc = new MathContext(precision.scale() + 10, RoundingMode.HALF_EVEN);
 
+        final BigDecimal doublePi = MathConstants.PI.multiply(BigDecimal.valueOf(2));
+        final BigDecimal z = x.remainder(doublePi);
+
         BiFunction<BigDecimal, Integer, BigDecimal> nextTerm = (BigDecimal term, Integer n) -> BigDecimal.valueOf(-1)
-                .multiply(term).multiply(x.pow(2))
+                .multiply(term).multiply(z.pow(2))
                 .divide(BigDecimal.valueOf(((long) 2 * n) * ((long) 2 * n + 1)), mc);
 
         BigDecimal sum = BigDecimal.ZERO;
-        BigDecimal term = x;
+        BigDecimal term = z;
 
         int count = 1;
 

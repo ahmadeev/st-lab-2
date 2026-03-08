@@ -9,7 +9,7 @@ public class App {
     public static void main( String[] args ) {
         Sine sine = new Sine();
 
-        // System.out.println(sine.calculate(BigDecimal.valueOf(Math.PI).divide(BigDecimal.valueOf(2)), BigDecimal.valueOf(1e-6)));
+        System.out.println(sine.calculate(BigDecimal.valueOf(Math.PI), BigDecimal.valueOf(1e-6)));
 
         NaturalLogarithm ln = new NaturalLogarithm();
 

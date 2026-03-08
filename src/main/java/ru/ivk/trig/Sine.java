@@ -26,6 +26,6 @@ public class Sine extends SeriesFunction {
             term = nextTerm.apply(term, count++);
         } while (term.abs().compareTo(precision) > 0);
 
-        return sum;
+        return sum.setScale(precision.scale(), RoundingMode.HALF_EVEN);
     }
 }

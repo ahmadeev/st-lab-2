@@ -26,7 +26,7 @@ public class NaturalLogarithm extends SeriesFunction {
         // z = ( x - 1 ) / ( x + 1 );
         // |z| < 1, при x > 0
         final BigDecimal z = x.subtract(BigDecimal.ONE)
-                .divide(x.add(BigDecimal.ONE), precision.scale() + 2, RoundingMode.HALF_EVEN);
+                .divide(x.add(BigDecimal.ONE), mc);
         final BigDecimal z2 = z.pow(2);
 
         BiFunction<BigDecimal, Integer, BigDecimal> nextTerm = (BigDecimal term, Integer n) -> term.multiply(z2)
@@ -44,6 +44,6 @@ public class NaturalLogarithm extends SeriesFunction {
             count += 2;
         } while (term.abs().compareTo(precision) > 0);
 
-        return sum.multiply(BigDecimal.valueOf(2));
+        return sum.multiply(BigDecimal.valueOf(2)).setScale(precision.scale(), RoundingMode.HALF_EVEN);
     }
 }

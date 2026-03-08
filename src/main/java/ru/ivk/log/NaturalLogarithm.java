@@ -1,20 +1,12 @@
 package ru.ivk.log;
 
-import ru.ivk.function.BasicFunction;
+import ru.ivk.function.SeriesFunction;
 
-public class NaturalLogarithm extends BasicFunction {
-    @Override
-    public double calculate(double x, double precision) {
-        return 0;
-    }
+import java.math.BigDecimal;
 
+public class NaturalLogarithm extends SeriesFunction {
     @Override
-    public double getTerm(int n, double x) {
-        return 0;
-    }
-
-    @Override
-    public double computeSeries(double x, double precision) {
-        return 0;
+    protected BigDecimal computeSeries(BigDecimal x, BigDecimal precision) {
+        return BigDecimal.ZERO;
     }
 }

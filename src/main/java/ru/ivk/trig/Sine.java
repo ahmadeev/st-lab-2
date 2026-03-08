@@ -1,20 +1,31 @@
 package ru.ivk.trig;
 
-import ru.ivk.function.BasicFunction;
+import ru.ivk.function.SeriesFunction;
 
-public class Sine extends BasicFunction {
-    @Override
-    public double calculate(double x, double precision) {
-        return 0;
-    }
+import java.math.BigDecimal;
+import java.math.MathContext;
+import java.math.RoundingMode;
+import java.util.function.BiFunction;
 
+public class Sine extends SeriesFunction {
     @Override
-    public double getTerm(int n, double x) {
-        return 0;
-    }
+    public BigDecimal computeSeries(final BigDecimal x, final BigDecimal precision) {
+        final MathContext mc = new MathContext(precision.scale() + 10, RoundingMode.HALF_EVEN);
 
-    @Override
-    public double computeSeries(double x, double precision) {
-        return 0;
+        BiFunction<BigDecimal, Integer, BigDecimal> nextTerm = (BigDecimal term, Integer n) -> BigDecimal.valueOf(-1)
+                .multiply(term).multiply(x.pow(2))
+                .divide(BigDecimal.valueOf(((long) 2 * n) * ((long) 2 * n + 1)), mc);
+
+        BigDecimal sum = BigDecimal.ZERO;
+        BigDecimal term = x;
+
+        int count = 1;
+
+        while (term.abs().compareTo(precision) > 0) {
+            sum = sum.add(term);
+            term = nextTerm.apply(term, count++);
+        }
+
+        return sum;
     }
 }

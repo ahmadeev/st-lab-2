@@ -2,9 +2,11 @@ package ru.ivk.trig;
 
 import ru.ivk.function.AbstractFunction;
 
+import java.math.BigDecimal;
+
 public class Cotangent extends AbstractFunction {
     @Override
-    public double calculate(double x, double precision) {
-        return 0;
+    public BigDecimal calculate(BigDecimal x, BigDecimal precision) {
+        return BigDecimal.ZERO;
     }
 }

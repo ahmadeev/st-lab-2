@@ -1,5 +1,7 @@
 package ru.ivk.function;
 
+import java.math.BigDecimal;
+
 public interface Function {
-    double calculate(double x, double precision);
+    BigDecimal calculate(BigDecimal x, BigDecimal precision);
 }

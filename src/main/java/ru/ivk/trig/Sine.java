@@ -21,10 +21,10 @@ public class Sine extends SeriesFunction {
 
         int count = 1;
 
-        while (term.abs().compareTo(precision) > 0) {
+        do {
             sum = sum.add(term);
             term = nextTerm.apply(term, count++);
-        }
+        } while (term.abs().compareTo(precision) > 0);
 
         return sum;
     }

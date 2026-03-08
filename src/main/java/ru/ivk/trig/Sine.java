@@ -11,7 +11,7 @@ import java.util.function.BiFunction;
 public class Sine extends SeriesFunction {
     @Override
     public BigDecimal computeSeries(final BigDecimal x, final BigDecimal precision) {
-        final MathContext mc = new MathContext(precision.scale() + 10, RoundingMode.HALF_EVEN);
+        final MathContext mc = new MathContext(precision.scale() + GUARD_DIGITS, RoundingMode.HALF_EVEN);
 
         final BigDecimal doublePi = MathConstants.PI.multiply(BigDecimal.valueOf(2));
         final BigDecimal z = x.remainder(doublePi);

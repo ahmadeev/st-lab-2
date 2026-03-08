@@ -20,7 +20,7 @@ public class NaturalLogarithm extends SeriesFunction {
 
     @Override
     protected BigDecimal computeSeries(final BigDecimal x, final BigDecimal precision) {
-        final MathContext mc = new MathContext(precision.scale() + 10, RoundingMode.HALF_EVEN);
+        final MathContext mc = new MathContext(precision.scale() + GUARD_DIGITS, RoundingMode.HALF_EVEN);
 
         /* нормализация x */
 

@@ -19,15 +19,21 @@ public class Cotangent extends AbstractFunction {
     public BigDecimal calculate(BigDecimal x, BigDecimal precision) {
         validate(x, precision);
 
-        precision = precision.divide(
+        BigDecimal extraPrecision = precision.divide(
                 BigDecimal.TEN.pow(GUARD_DIGITS),
                 MathContext.DECIMAL128.getPrecision(),
                 RoundingMode.HALF_EVEN
         );
 
-        return cos.calculate(x, precision)
+        BigDecimal sinValue = sin.calculate(x, extraPrecision);
+
+        if (sinValue.abs().compareTo(precision) < 0) {
+            throw new ArithmeticException("cot value -> inf");
+        }
+
+        return cos.calculate(x, extraPrecision)
                 .divide(
-                        sin.calculate(x, precision),
+                        sinValue,
                         MathContext.DECIMAL128.getPrecision(),
                         RoundingMode.HALF_EVEN
                 )

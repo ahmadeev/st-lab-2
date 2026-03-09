@@ -16,6 +16,15 @@ public class Logarithm extends AbstractFunction {
     }
 
     @Override
+    protected void validate(BigDecimal x, BigDecimal precision) {
+        super.validate(x, precision);
+
+        if (x.compareTo(BigDecimal.ZERO) <= 0) {
+            throw new IllegalArgumentException("x value must be greater than 0");
+        }
+    }
+
+    @Override
     public BigDecimal calculate(BigDecimal x, BigDecimal precision) {
         validate(x, precision);
 

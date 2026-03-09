@@ -1,30 +1,27 @@
-package ru.ivk.log.module;
+package ru.ivk.log.integration;
 
 import org.junit.jupiter.api.BeforeEach;
-import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import ru.ivk.log.NaturalLogarithm;
+import ru.ivk.log.Logarithm;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-@DisplayName("[unit] Natural logarithm")
-public class NaturalLogarithmTest {
+public class LogarithmTest {
     private static final BigDecimal PRECISION = BigDecimal.valueOf(1e-6);
-    private NaturalLogarithm ln;
+    private Logarithm log3;
 
     @BeforeEach
     void setUp() {
-        this.ln = new NaturalLogarithm();
+        this.log3 = new Logarithm(3);
     }
 
-    @ParameterizedTest(name = "ln({0}) = {1}")
-    @CsvFileSource(resources = "/ln.csv", numLinesToSkip = 1, delimiter = ',')
-    @DisplayName("Natural logarithm (CSV values)")
+    @ParameterizedTest
+    @CsvFileSource(resources = "/log3.csv", numLinesToSkip = 1, delimiter = ',')
     void testValues(BigDecimal x, BigDecimal y) {
-        BigDecimal actual = ln.calculate(x, PRECISION);
+        BigDecimal actual = log3.calculate(x, PRECISION);
 
         assertTrue(
                 actual.subtract(y).abs().compareTo(PRECISION) < 0

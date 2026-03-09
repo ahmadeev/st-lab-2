@@ -1,27 +1,28 @@
-package ru.ivk.trig.module;
+package ru.ivk.trig.integration;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
-import ru.ivk.trig.Cosecant;
+import ru.ivk.trig.Cotangent;
 
 import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
-public class CosecantTest {
+public class CotangentTest {
     private static final BigDecimal PRECISION = BigDecimal.valueOf(1e-6);
-    private Cosecant csc;
+
+    private Cotangent cot;
 
     @BeforeEach
     void setUp() {
-        this.csc = new Cosecant();
+        this.cot = new Cotangent();
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/csc.csv", numLinesToSkip = 1, delimiter = ',')
+    @CsvFileSource(resources = "/cot.csv", numLinesToSkip = 1, delimiter = ',')
     void testValues(BigDecimal x, BigDecimal y) {
-        BigDecimal actual = csc.calculate(x, PRECISION);
+        BigDecimal actual = cot.calculate(x, PRECISION);
 
         assertTrue(
                 actual.subtract(y).abs().compareTo(PRECISION) < 0

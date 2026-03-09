@@ -19,6 +19,12 @@ public class Cotangent extends AbstractFunction {
     public BigDecimal calculate(BigDecimal x, BigDecimal precision) {
         validate(x, precision);
 
+        precision = precision.divide(
+                BigDecimal.TEN.pow(GUARD_DIGITS),
+                MathContext.DECIMAL128.getPrecision(),
+                RoundingMode.HALF_EVEN
+        );
+
         return cos.calculate(x, precision)
                 .divide(
                         sin.calculate(x, precision),

@@ -19,6 +19,12 @@ public class Tangent extends AbstractFunction {
     public BigDecimal calculate(BigDecimal x, BigDecimal precision) {
         validate(x, precision);
 
+        precision = precision.divide(
+                BigDecimal.TEN.pow(GUARD_DIGITS),
+                MathContext.DECIMAL128.getPrecision(),
+                RoundingMode.HALF_EVEN
+        );
+
         return sin.calculate(x, precision)
                 .divide(
                         cos.calculate(x, precision),

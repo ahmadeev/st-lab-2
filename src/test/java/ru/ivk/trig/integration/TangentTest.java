@@ -1,6 +1,7 @@
 package ru.ivk.trig.integration;
 
 import org.junit.jupiter.api.BeforeEach;
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.CsvFileSource;
 import ru.ivk.trig.Tangent;
@@ -9,6 +10,7 @@ import java.math.BigDecimal;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 
+@DisplayName("[integration] Tangent")
 public class TangentTest {
     private static final BigDecimal PRECISION = BigDecimal.valueOf(1e-6);
 

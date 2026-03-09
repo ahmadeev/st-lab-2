@@ -23,10 +23,6 @@ public class CosecantTest {
     void testValues(BigDecimal x, BigDecimal y) {
         BigDecimal actual = csc.calculate(x, PRECISION);
 
-        System.out.printf("actual: %s%n", actual);
-        System.out.printf("expected: %s%n", y);
-        System.out.printf("погрешность: %s%n", actual.subtract(y).abs());
-
         assertTrue(
                 actual.subtract(y).abs().compareTo(PRECISION) < 0
         );

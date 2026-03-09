@@ -11,17 +11,17 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 
 public class CotangentTest {
     private static final BigDecimal PRECISION = BigDecimal.valueOf(1e-6);
-    private Cotangent ctan;
+    private Cotangent cot;
 
     @BeforeEach
     void setUp() {
-        this.ctan = new Cotangent();
+        this.cot = new Cotangent();
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/ctan.csv", numLinesToSkip = 1, delimiter = ',')
+    @CsvFileSource(resources = "/cot.csv", numLinesToSkip = 1, delimiter = ',')
     void testValues(BigDecimal x, BigDecimal y) {
-        BigDecimal actual = ctan.calculate(x, PRECISION);
+        BigDecimal actual = cot.calculate(x, PRECISION);
 
         assertTrue(
                 actual.subtract(y).abs().compareTo(PRECISION) < 0

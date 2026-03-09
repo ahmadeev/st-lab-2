@@ -1,4 +1,4 @@
-package ru.ivk.utils;
+package ru.ivk.utils.file;
 
 import org.jfree.chart.ChartFactory;
 import org.jfree.chart.ChartPanel;

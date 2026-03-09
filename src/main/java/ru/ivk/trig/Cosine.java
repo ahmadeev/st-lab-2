@@ -1,7 +1,7 @@
 package ru.ivk.trig;
 
 import lombok.RequiredArgsConstructor;
-import ru.ivk.MathConstants;
+import ru.ivk.utils.MathConstants;
 import ru.ivk.function.AbstractFunction;
 
 import java.math.BigDecimal;

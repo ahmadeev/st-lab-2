@@ -1,4 +1,4 @@
-package ru.ivk;
+package ru.ivk.utils;
 
 import java.math.BigDecimal;
 

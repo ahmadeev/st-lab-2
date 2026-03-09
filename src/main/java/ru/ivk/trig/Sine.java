@@ -1,6 +1,6 @@
 package ru.ivk.trig;
 
-import ru.ivk.MathConstants;
+import ru.ivk.utils.MathConstants;
 import ru.ivk.function.SeriesFunction;
 
 import java.math.BigDecimal;

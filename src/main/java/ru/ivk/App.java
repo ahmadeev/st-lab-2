@@ -5,9 +5,9 @@ import ru.ivk.function.AbstractFunction;
 import ru.ivk.log.Logarithm;
 import ru.ivk.log.NaturalLogarithm;
 import ru.ivk.trig.*;
-import ru.ivk.utils.CsvFileWriter;
-import ru.ivk.utils.CsvGraphDrawer;
-import ru.ivk.utils.CsvSeparators;
+import ru.ivk.utils.file.CsvFileWriter;
+import ru.ivk.utils.file.CsvGraphDrawer;
+import ru.ivk.utils.file.CsvSeparators;
 
 import java.io.File;
 import java.math.BigDecimal;

@@ -43,7 +43,7 @@ public class App {
     public static void main( String[] args ) {
         /* writes */
 
-        CsvFileWriter writer = new CsvFileWriter(ROOT_PATH);
+        CsvFileWriter writer = new CsvFileWriter(ROOT_PATH, CsvSeparators.COMMA);
 
         FUNCTIONS.forEach((fun) -> {
             writer.process(

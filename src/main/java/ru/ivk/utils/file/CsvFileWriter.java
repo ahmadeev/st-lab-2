@@ -12,9 +12,11 @@ import java.nio.file.Paths;
 
 public class CsvFileWriter {
     private final String OUTPUT_DIR;
+    private final CsvSeparators SEPARATOR;
 
-    public CsvFileWriter(String outputDir) throws IOException {
+    public CsvFileWriter(String outputDir, CsvSeparators separator) throws IOException {
         OUTPUT_DIR = outputDir;
+        SEPARATOR = separator;
 
         Path dir = Paths.get(OUTPUT_DIR);
 
@@ -28,12 +30,12 @@ public class CsvFileWriter {
         final String path = FileCommonUtilities.getFilePath(OUTPUT_DIR, filename, FileExtensions.CSV);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, false))) {
-            writer.write("x,y");
+            writer.write(String.format("x%sy", SEPARATOR.getSeparator()));
             writer.newLine();
 
             while (min.compareTo(max) <= 0) {
                 try {
-                    writer.write(String.format("%s,%s", min, fun.calculate(min, precision)));
+                    writer.write(String.format("%s%s%s", min, SEPARATOR.getSeparator(), fun.calculate(min, precision)));
                     writer.newLine();
                 } catch (Exception ignore) {}
 

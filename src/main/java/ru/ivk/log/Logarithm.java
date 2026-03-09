@@ -17,6 +17,8 @@ public class Logarithm extends AbstractFunction {
 
     @Override
     public BigDecimal calculate(BigDecimal x, BigDecimal precision) {
+        validate(x, precision);
+
         // log_a(b) = ln(b) / ln(a)
 
         return ln.calculate(x, precision)

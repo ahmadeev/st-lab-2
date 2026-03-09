@@ -5,7 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
-import ru.ivk.trig.Cosine;
+import ru.ivk.trig.Cosecant;
 import ru.ivk.trig.Sine;
 
 import java.math.BigDecimal;
@@ -14,21 +14,21 @@ import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
-@DisplayName("[unit] Cosine")
-public class CosineTest {
+@DisplayName("[unit] Cosecant")
+public class CosecantTest {
     private static final BigDecimal PRECISION = BigDecimal.valueOf(1e-6);
 
     @Mock
     private Sine mockSin;
 
     @Test
-    @DisplayName("Cosine (passed argument)")
+    @DisplayName("Cosecant (passed argument)")
     void testValues() {
-        when(mockSin.calculate(any(), any())).thenReturn(BigDecimal.ZERO);
+        when(mockSin.calculate(any(), any())).thenReturn(BigDecimal.ONE);
 
-        Cosine cos = new Cosine(mockSin);
+        Cosecant csc = new Cosecant(mockSin);
 
-        cos.calculate(BigDecimal.ZERO, PRECISION);
+        csc.calculate(BigDecimal.ONE, PRECISION);
 
         verify(mockSin, atLeastOnce()).calculate(any(), any());
     }

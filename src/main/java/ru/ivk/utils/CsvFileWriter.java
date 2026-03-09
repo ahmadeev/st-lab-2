@@ -2,6 +2,7 @@ package ru.ivk.utils;
 
 import ru.ivk.function.AbstractFunction;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
@@ -26,12 +27,16 @@ public class CsvFileWriter {
     public void run(AbstractFunction fun, BigDecimal min, BigDecimal max, BigDecimal step, BigDecimal precision) {
         final String path = getFilePath(fun);
 
-        try (FileWriter writer = new FileWriter(path, false)) {
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, false))) {
+            writer.write("x,y");
+
             while (min.compareTo(max) <= 0) {
+                writer.newLine();
+
                 try {
-                    writer.write(String.format("%s,%s%n", min, fun.calculate(min, precision)));
+                    writer.write(String.format("%s,%s", min, fun.calculate(min, precision)));
                 } catch (Exception e) {
-                    writer.write(String.format("%s,%s%n", min, null));
+                    writer.write(String.format("%s,%s", min, null));
                 }
 
                 min = min.add(step);

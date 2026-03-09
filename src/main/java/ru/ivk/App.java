@@ -6,7 +6,10 @@ import ru.ivk.log.Logarithm;
 import ru.ivk.log.NaturalLogarithm;
 import ru.ivk.trig.*;
 import ru.ivk.utils.CsvFileWriter;
+import ru.ivk.utils.CsvGraphDrawer;
+import ru.ivk.utils.CsvSeparators;
 
+import java.io.File;
 import java.math.BigDecimal;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,43 +17,36 @@ import java.util.List;
 import static java.math.RoundingMode.HALF_EVEN;
 
 public class App {
+    private static final String ROOT_PATH = System.getProperty("user.dir") + File.separator + "output";
+
     private static final BigDecimal PRECISION = BigDecimal.valueOf(1e-6);
     private static final BigDecimal POSITIVE_END = BigDecimal.TEN.setScale(10, HALF_EVEN);
     private static final BigDecimal NEGATIVE_END = POSITIVE_END.negate();
     private static final BigDecimal STEP = BigDecimal.valueOf(1e-2);
 
+    private static final List<AbstractFunction> FUNCTIONS = new ArrayList<>(
+            List.of(
+                    new Sine(),
+                    new Cosine(),
+                    new Tangent(),
+                    new Cotangent(),
+                    new Cosecant(),
+                    new NaturalLogarithm(),
+                    new Logarithm(2),
+                    new Logarithm(3),
+                    new Logarithm(5),
+                    new Logarithm(10)
+            )
+    );
+
     @SneakyThrows
     public static void main( String[] args ) {
-/*        Sine sine = new Sine();
-
-        System.out.println(sine.calculate(BigDecimal.valueOf(Math.PI), BigDecimal.valueOf(1e-6)));
-
-        NaturalLogarithm ln = new NaturalLogarithm();
-
-        System.out.println(ln.calculate(BigDecimal.valueOf(1.5), BigDecimal.valueOf(1e-6)));
-
-        Cotangent cot = new Cotangent();
-
-        System.out.println(cot.calculate(BigDecimal.ZERO, BigDecimal.valueOf(1e-6)));*/
-
         /* writes */
 
-        CsvFileWriter writer = new CsvFileWriter();
+        CsvFileWriter writer = new CsvFileWriter(ROOT_PATH);
 
-        List<AbstractFunction> functions = new ArrayList<>(
-                List.of(
-                        new Sine(),
-                        new Cosine(),
-                        new Tangent(),
-                        new Cotangent(),
-                        new Cosecant(),
-                        new NaturalLogarithm(),
-                        new Logarithm(3)
-                )
-        );
-
-        functions.forEach((fun) -> {
-            writer.run(
+        FUNCTIONS.forEach((fun) -> {
+            writer.process(
                     fun,
                     NEGATIVE_END,
                     POSITIVE_END,
@@ -58,5 +54,11 @@ public class App {
                     PRECISION
             );
         });
+
+        /* plots */
+
+        CsvGraphDrawer gd = new CsvGraphDrawer(ROOT_PATH, CsvSeparators.COMMA);
+
+        FUNCTIONS.forEach(gd::process);
     }
 }

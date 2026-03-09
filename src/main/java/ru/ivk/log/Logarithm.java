@@ -38,4 +38,9 @@ public class Logarithm extends AbstractFunction {
                 )
                 .setScale(precision.scale(), RoundingMode.HALF_EVEN);
     }
+
+    @Override
+    public String toString() {
+        return String.format("%s (base %d)", super.toString(), this.base);
+    }
 }

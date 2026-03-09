@@ -3,7 +3,6 @@ package ru.ivk.utils;
 import ru.ivk.function.AbstractFunction;
 
 import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.math.BigDecimal;
@@ -14,8 +13,8 @@ import java.nio.file.Paths;
 public class CsvFileWriter {
     private final String OUTPUT_DIR;
 
-    public CsvFileWriter() throws IOException {
-        OUTPUT_DIR = System.getProperty("user.dir") + File.separator + "output";
+    public CsvFileWriter(String outputDir) throws IOException {
+        OUTPUT_DIR = outputDir;
 
         Path dir = Paths.get(OUTPUT_DIR);
 
@@ -24,31 +23,26 @@ public class CsvFileWriter {
         }
     }
 
-    public void run(AbstractFunction fun, BigDecimal min, BigDecimal max, BigDecimal step, BigDecimal precision) {
-        final String path = getFilePath(fun);
+    public void process(AbstractFunction fun, BigDecimal min, BigDecimal max, BigDecimal step, BigDecimal precision) {
+        final String filename = fun.toString();
+        final String path = FileCommonUtilities.getFilePath(OUTPUT_DIR, filename, FileExtensions.CSV);
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(path, false))) {
             writer.write("x,y");
+            writer.newLine();
 
             while (min.compareTo(max) <= 0) {
-                writer.newLine();
-
                 try {
                     writer.write(String.format("%s,%s", min, fun.calculate(min, precision)));
-                } catch (Exception e) {
-                    writer.write(String.format("%s,%s", min, null));
-                }
+                    writer.newLine();
+                } catch (Exception ignore) {}
 
                 min = min.add(step);
             }
 
             writer.flush();
-        } catch (IOException ex){
-            System.out.println(ex.getMessage());
+        } catch (IOException e){
+            System.out.println(e.getMessage());
         }
-    }
-
-    private String getFilePath(AbstractFunction function) {
-        return OUTPUT_DIR + File.separator + function.getClass().getSimpleName() + ".csv";
     }
 }

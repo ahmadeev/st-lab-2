@@ -10,4 +10,9 @@ public abstract class AbstractFunction implements Function {
             throw new IllegalArgumentException("Precision value must be between 0 and 1");
         }
     }
+
+    @Override
+    public String toString() {
+        return this.getClass().getSimpleName();
+    }
 }

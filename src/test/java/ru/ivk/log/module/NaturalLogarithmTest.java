@@ -19,7 +19,7 @@ public class NaturalLogarithmTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/ln.csv", numLinesToSkip = 1, delimiter = ';')
+    @CsvFileSource(resources = "/ln.csv", numLinesToSkip = 1, delimiter = ',')
     void testValues(BigDecimal x, BigDecimal y) {
         BigDecimal actual = ln.calculate(x, PRECISION);
 

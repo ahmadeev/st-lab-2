@@ -19,7 +19,7 @@ public class TangentTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/tan.csv", numLinesToSkip = 1, delimiter = ';')
+    @CsvFileSource(resources = "/tan.csv", numLinesToSkip = 1, delimiter = ',')
     void testValues(BigDecimal x, BigDecimal y) {
         BigDecimal actual = tan.calculate(x, PRECISION);
 

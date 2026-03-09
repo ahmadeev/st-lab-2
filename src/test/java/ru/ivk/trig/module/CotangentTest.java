@@ -19,7 +19,7 @@ public class CotangentTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/ctan.csv", numLinesToSkip = 1, delimiter = ';')
+    @CsvFileSource(resources = "/ctan.csv", numLinesToSkip = 1, delimiter = ',')
     void testValues(BigDecimal x, BigDecimal y) {
         BigDecimal actual = ctan.calculate(x, PRECISION);
 

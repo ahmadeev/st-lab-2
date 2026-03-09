@@ -19,7 +19,7 @@ public class LogarithmTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/log3.csv", numLinesToSkip = 1, delimiter = ';')
+    @CsvFileSource(resources = "/log3.csv", numLinesToSkip = 1, delimiter = ',')
     void testValues(BigDecimal x, BigDecimal y) {
         BigDecimal actual = log3.calculate(x, PRECISION);
 

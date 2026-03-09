@@ -19,7 +19,7 @@ public class SineTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/sin.csv", numLinesToSkip = 1, delimiter = ';')
+    @CsvFileSource(resources = "/sin.csv", numLinesToSkip = 1, delimiter = ',')
     void testValues(BigDecimal x, BigDecimal y) {
         BigDecimal actual = sin.calculate(x, PRECISION);
 

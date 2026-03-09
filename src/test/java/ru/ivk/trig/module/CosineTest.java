@@ -19,7 +19,7 @@ public class CosineTest {
     }
 
     @ParameterizedTest
-    @CsvFileSource(resources = "/cos.csv", numLinesToSkip = 1, delimiter = ';')
+    @CsvFileSource(resources = "/cos.csv", numLinesToSkip = 1, delimiter = ',')
     void testValues(BigDecimal x, BigDecimal y) {
         BigDecimal actual = cos.calculate(x, PRECISION);
 
